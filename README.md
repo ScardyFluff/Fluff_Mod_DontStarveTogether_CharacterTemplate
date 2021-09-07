@@ -1,0 +1,1 @@
+# Fluff_Mod_DontStarveTogether_CharacterTemplate
