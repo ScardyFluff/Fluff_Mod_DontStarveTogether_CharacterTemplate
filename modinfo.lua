@@ -15,12 +15,12 @@ dst_compatible = true
 dont_starve_compatible = false
 reign_of_giants_compatible = false
 shipwrecked_compatible = false
-hamlet_compatible = true
+hamlet_compatible = false
 
 
 -- Event Compatibility
-forge_compatible = true
-gorge_compatible = true
+forge_compatible = false
+gorge_compatible = false
 
 
 -- Client Compatibility
