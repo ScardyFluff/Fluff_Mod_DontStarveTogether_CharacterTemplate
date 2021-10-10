@@ -35,7 +35,7 @@ Assets = {
 --	Asset("ATLAS", "images/inventoryimages/test_item.xml"),
 --	Asset("IMAGE", "images/inventoryimages/test_item.tex"),
 
--- Voice
+-- Character Voice
 --	Asset("SOUNDPACKAGE", "sound/templatechar.fev"),	
 --	Asset("SOUND", "sound/templatechar.fsb"),
 
@@ -105,8 +105,8 @@ AddSkinnableCharacter("templatechar")
 	STRINGS.SKIN_DESCRIPTIONS.templatechar_none = "Description"
 	STRINGS.SKIN_DESCRIPTIONS.templatechar_skintest = "Description"
 
--- The character select screen lines
-	STRINGS.CHARACTER_TITLES.templatechar = "The Sample Character"
+-- Character Info
+	STRINGS.CHARACTER_TITLES.templatechar = "The Multiplayer Template"
 	STRINGS.CHARACTER_NAMES.templatechar = "Sample"
 	STRINGS.CHARACTER_DESCRIPTIONS.templatechar = "*Perk 1\n*Perk 2\n*Perk 3"
 	STRINGS.CHARACTER_QUOTES.templatechar = "\"Quote\""

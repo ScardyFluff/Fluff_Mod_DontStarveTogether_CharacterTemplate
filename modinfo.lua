@@ -22,6 +22,7 @@ gorge_compatible = false
 -- Client Compatibility
 all_clients_require_mod = true
 
+-- Icon Stuff
 icon_atlas = "modicon.xml"
 icon = "modicon.tex"
 
