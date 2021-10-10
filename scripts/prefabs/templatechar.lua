@@ -1,26 +1,61 @@
 local MakePlayerCharacter = require "prefabs/player_common"
 
 local assets = {
-    Asset("SCRIPT", "scripts/prefabs/player_common.lua"),
+	Asset("SCRIPT", "scripts/prefabs/player_common.lua")
 }
 
--- Your character's stats
+-- Character Stats 
 TUNING.TEMPLATECHAR_HEALTH = 150
 TUNING.TEMPLATECHAR_HUNGER = 150
 TUNING.TEMPLATECHAR_SANITY = 200
 
--- Custom starting inventory
+-- Starting Inventory
 TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.TEMPLATECHAR = {
 	"flint",
 	"flint",
 	"twigs",
-	"twigs",
+	"twigs"
 }
 
+-- Generic
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEMPLATECHAR = 
+{
+	GENERIC = "Generic",
+	ATTACKER = "Generic",
+	MURDERER = "Generic",
+	REVIVER = "Generic",
+	GHOST = "Generic",
+	FIRESTARTER = "Generic"
+}
+
+-- Self
+STRINGS.CHARACTERS.TEMPLATECHAR.DESCRIBE.TEMPLATECHAR = 
+{
+	GENERIC = "Sample",
+	ATTACKER = "Sample",
+	MURDERER = "Sample",
+	REVIVER = "Sample",
+	GHOST = "Sample",
+	FIRESTARTER = "Sample"
+}
+
+-- Wilson... etc...
+STRINGS.CHARACTERS.TEMPLATECHAR.DESCRIBE.WILSON = 
+{
+	GENERIC = "Wilson",
+	ATTACKER = "Wilson",
+	MURDERER = "Wilson",
+	REVIVER = "Wilson",
+	GHOST = "Wilson",
+	FIRESTARTER = "Wilson"
+}
+
+-- Local Stuff
 local start_inv = {}
 for k, v in pairs(TUNING.GAMEMODE_STARTING_ITEMS) do
     start_inv[string.lower(k)] = v.TEMPLATECHAR
 end
+
 local prefabs = FlattenTree(start_inv, true)
 
 -- When the character is revived from human
@@ -46,37 +81,44 @@ local function onload(inst)
     end
 end
 
-
+-- Server and Client Init
 -- This initializes for both the server and client. Tags can be added here.
 local common_postinit = function(inst) 
 	-- Minimap icon
 	inst.MiniMapEntity:SetIcon( "templatechar.tex" )
 end
 
+-- Server Init
 -- This initializes for the server only. Components are added here.
 local master_postinit = function(inst)
-	-- Set starting inventory
+
+-- Sets Starting Inventory
     inst.starting_inventory = start_inv[TheNet:GetServerGameMode()] or start_inv.default
 	
-	-- choose which sounds this character will play
+-- Character Voice
 	inst.soundsname = "wilson"
-	
-	-- Uncomment if "wathgrithr"(Wigfrid) or "webber" voice is used
+
+	-- Default Voices:
+		-- "wilson"
+		-- "willow"
+		-- "wendy"
+
+	-- Uncomment this line if the "wathgrithr"(Wigfrid) or "webber" voice is used.
     --inst.talker_path_override = "dontstarve_DLC001/characters/"
 	
-	-- Stats	
+-- Stats	
 	inst.components.health:SetMaxHealth(TUNING.TEMPLATECHAR_HEALTH)
 	inst.components.hunger:SetMax(TUNING.TEMPLATECHAR_HUNGER)
 	inst.components.sanity:SetMax(TUNING.TEMPLATECHAR_SANITY)
 	
-	-- Damage multiplier (optional)
-    inst.components.combat.damagemultiplier = 1
+-- Damage multiplier (optional)
+	inst.components.combat.damagemultiplier = 1
 	
-	-- Hunger rate (optional)
+-- Hunger rate (optional)
 	inst.components.hunger.hungerrate = 1 * TUNING.WILSON_HUNGER_RATE
-	
+
 	inst.OnLoad = onload
-    inst.OnNewSpawn = onload
+	inst.OnNewSpawn = onload
 	
 end
 

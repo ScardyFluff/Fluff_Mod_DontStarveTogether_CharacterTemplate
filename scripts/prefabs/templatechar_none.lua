@@ -8,37 +8,40 @@ table.insert(prefabs, CreatePrefabSkin("templatechar_none",
 	rarity = "Character",
 	skip_item_gen = true,
 	skip_giftable_gen = true,
-	skin_tags = { "BASE", "TEMPLATECHAR", },
+	skin_tags = { "BASE", "TEMPLATECHAR" },
+
 	skins = {
 		normal_skin = "templatechar",
-	    ghost_skin = "ghost_templatechar_build",
+		ghost_skin = "ghost_templatechar_build",
 	},
+
 	assets = {
 		Asset( "ANIM", "anim/templatechar.zip" ),
 		Asset( "ANIM", "anim/ghost_templatechar_build.zip" ),
-	},
+	}
 
 }))
 
-table.insert(prefabs, CreatePrefabSkin("templatechar_victorian",
+table.insert(prefabs, CreatePrefabSkin("templatechar_skintest",
 {
 	base_prefab = "templatechar",
-	build_name_override = "templatechar_victorian",
+	build_name_override = "templatechar_skintest",
 	type = "base",
-	rarity = "Elegant",
-	rarity_modifier = "Woven",
+	rarity = "Character",
+--	rarity_modifier = "Woven",
 	skip_item_gen = true,
 	skip_giftable_gen = true,
-	skin_tags = { "BASE", "TEMPLATECHAR", "VICTORIAN"},
+	skin_tags = { "BASE", "TEMPLATECHAR" },
+
 	skins = {
-		normal_skin = "templatechar_victorian",
-		ghost_skin = "ghost_templatechar_build_victorian",
+		normal_skin = "templatechar_skintest",
+		ghost_skin = "ghost_templatechar_build",
 	},
 
 	assets = {
-		Asset( "ANIM", "anim/templatechar_victorian.zip" ),
-		Asset( "ANIM", "anim/ghost_templatechar_build_victorian.zip" ),
-	},
+		Asset( "ANIM", "anim/templatechar_skintest.zip" ),
+		Asset( "ANIM", "anim/ghost_templatechar_build.zip" ),
+	}
 
 }))
 
