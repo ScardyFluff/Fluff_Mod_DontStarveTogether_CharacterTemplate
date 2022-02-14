@@ -5,12 +5,12 @@ local assets = {
 }
 
 -- Character Stats 
-TUNING.TEMPLATECHAR_HEALTH = 150
-TUNING.TEMPLATECHAR_HUNGER = 150
-TUNING.TEMPLATECHAR_SANITY = 200
+TUNING.FLUFF_HEALTH = 150
+TUNING.FLUFF_HUNGER = 150
+TUNING.FLUFF_SANITY = 200
 
 -- Starting Inventory
-TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.TEMPLATECHAR = {
+TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.FLUFF = {
 	"flint",
 	"flint",
 	"twigs",
@@ -18,7 +18,7 @@ TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.TEMPLATECHAR = {
 }
 
 -- Generic
-STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEMPLATECHAR = 
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.FLUFF = 
 {
 	GENERIC = "Generic",
 	ATTACKER = "Generic",
@@ -29,7 +29,7 @@ STRINGS.CHARACTERS.GENERIC.DESCRIBE.TEMPLATECHAR =
 }
 
 -- Self
-STRINGS.CHARACTERS.TEMPLATECHAR.DESCRIBE.TEMPLATECHAR = 
+STRINGS.CHARACTERS.FLUFF.DESCRIBE.FLUFF = 
 {
 	GENERIC = "Sample",
 	ATTACKER = "Sample",
@@ -40,7 +40,7 @@ STRINGS.CHARACTERS.TEMPLATECHAR.DESCRIBE.TEMPLATECHAR =
 }
 
 -- Wilson... etc...
-STRINGS.CHARACTERS.TEMPLATECHAR.DESCRIBE.WILSON = 
+STRINGS.CHARACTERS.FLUFF.DESCRIBE.WILSON = 
 {
 	GENERIC = "Wilson",
 	ATTACKER = "Wilson",
@@ -53,7 +53,7 @@ STRINGS.CHARACTERS.TEMPLATECHAR.DESCRIBE.WILSON =
 -- Local Stuff
 local start_inv = {}
 for k, v in pairs(TUNING.GAMEMODE_STARTING_ITEMS) do
-    start_inv[string.lower(k)] = v.TEMPLATECHAR
+    start_inv[string.lower(k)] = v.FLUFF
 end
 
 local prefabs = FlattenTree(start_inv, true)
@@ -61,12 +61,12 @@ local prefabs = FlattenTree(start_inv, true)
 -- When the character is revived from human
 local function onbecamehuman(inst)
 	-- Set speed when not a ghost (optional)
-	inst.components.locomotor:SetExternalSpeedMultiplier(inst, "templatechar_speed_mod", 1)
+	inst.components.locomotor:SetExternalSpeedMultiplier(inst, "fluff_speed_mod", 1)
 end
 
 local function onbecameghost(inst)
 	-- Remove speed modifier when becoming a ghost
-   inst.components.locomotor:RemoveExternalSpeedMultiplier(inst, "templatechar_speed_mod")
+   inst.components.locomotor:RemoveExternalSpeedMultiplier(inst, "fluff_speed_mod")
 end
 
 -- When loading or spawning the character
@@ -85,7 +85,7 @@ end
 -- This initializes for both the server and client. Tags can be added here.
 local common_postinit = function(inst) 
 	-- Minimap icon
-	inst.MiniMapEntity:SetIcon( "templatechar.tex" )
+	inst.MiniMapEntity:SetIcon( "fluff.tex" )
 end
 
 -- Server Init
@@ -107,9 +107,9 @@ local master_postinit = function(inst)
     --inst.talker_path_override = "dontstarve_DLC001/characters/"
 	
 -- Stats	
-	inst.components.health:SetMaxHealth(TUNING.TEMPLATECHAR_HEALTH)
-	inst.components.hunger:SetMax(TUNING.TEMPLATECHAR_HUNGER)
-	inst.components.sanity:SetMax(TUNING.TEMPLATECHAR_SANITY)
+	inst.components.health:SetMaxHealth(TUNING.FLUFF_HEALTH)
+	inst.components.hunger:SetMax(TUNING.FLUFF_HUNGER)
+	inst.components.sanity:SetMax(TUNING.FLUFF_SANITY)
 	
 -- Damage multiplier (optional)
 	inst.components.combat.damagemultiplier = 1
@@ -122,4 +122,4 @@ local master_postinit = function(inst)
 	
 end
 
-return MakePlayerCharacter("templatechar", prefabs, assets, common_postinit, master_postinit, prefabs)
+return MakePlayerCharacter("fluff", prefabs, assets, common_postinit, master_postinit, prefabs)

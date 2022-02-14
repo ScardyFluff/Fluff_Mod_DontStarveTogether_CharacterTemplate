@@ -1,2 +1,2 @@
-# Multiplayer Template
-A character template for Don't Starve Together.
+# Fluff, The Stubborn Warrior
+Mod files for a Don't Starve Together character mod.

@@ -1,6 +1,6 @@
 -- Basic Info
-name = "Multiplayer Character Template"
-description = "A character template for Don't Starve Together."
+name = "Fluff The Stubborn Warrior"
+description = "Fluff, an OC from Miitopa for Don't Starve Together."
 author = "ScardyFluff"
 version = "1.0.0"
 forumthread = ""
