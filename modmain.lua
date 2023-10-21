@@ -1,29 +1,43 @@
+
+-- Sample, The Singleplayer Template - modmain.lua
+
+-- Make sure to add all the ZIP's names from inside the anim folder.(?)
 PrefabFiles = {
 	"templatechar",
 	"templatechar_none",
 }
 
+-- These are the files that aren't part of the ZIPs.
 Assets = {
-
 -- Character Portraits
+-- This is the big images that appear when you select a character. (I think this one is unused now.)
 	Asset( "IMAGE", "bigportraits/templatechar.tex" ),
 	Asset( "ATLAS", "bigportraits/templatechar.xml" ),
+
+-- These are the skin portraits.
 	Asset( "IMAGE", "bigportraits/templatechar_none.tex" ),
 	Asset( "ATLAS", "bigportraits/templatechar_none.xml" ),
-	Asset( "IMAGE", "bigportraits/templatechar_skintest.tex" ),
-	Asset( "ATLAS", "bigportraits/templatechar_skintest.xml" ),
+
+--	Asset( "IMAGE", "bigportraits/templatechar_skintest.tex" ),
+--	Asset( "ATLAS", "bigportraits/templatechar_skintest.xml" ),
 
 -- Character Icons
 	Asset( "IMAGE", "images/avatars/avatar_templatechar.tex" ),
 	Asset( "ATLAS", "images/avatars/avatar_templatechar.xml" ),
+
 	Asset( "IMAGE", "images/avatars/avatar_ghost_templatechar.tex" ),
 	Asset( "ATLAS", "images/avatars/avatar_ghost_templatechar.xml" ),
+
 	Asset( "IMAGE", "images/avatars/self_inspect_templatechar.tex" ),
 	Asset( "ATLAS", "images/avatars/self_inspect_templatechar.xml" ),
+
+    Asset( "IMAGE", "images/crafting_menu_avatars/avatar_templatechar.tex" ),
+    Asset( "ATLAS", "images/crafting_menu_avatars/avatar_templatechar.xml" ),
 
 -- Name Images
 	Asset( "IMAGE", "images/names_templatechar.tex" ),
 	Asset( "ATLAS", "images/names_templatechar.xml" ),
+
 	Asset( "IMAGE", "images/names_gold_templatechar.tex" ),
 	Asset( "ATLAS", "images/names_gold_templatechar.xml" ),
 
@@ -67,31 +81,6 @@ AddMinimapAtlas("images/map_icons/templatechar.xml")
 
 local require = GLOBAL.require
 local STRINGS = GLOBAL.STRINGS
-local _G = GLOBAL
-local PREFAB_SKINS = _G.PREFAB_SKINS
-local PREFAB_SKINS_IDS = _G.PREFAB_SKINS_IDS
-local SKIN_AFFINITY_INFO = GLOBAL.require("skin_affinity_info")
-
-modimport("scripts/skins_api")
-
-SKIN_AFFINITY_INFO.templatechar = {
-	"templatechar_skintest",
-}
-
-PREFAB_SKINS["templatechar"] = {
-	"templatechar_none",
-	"templatechar_skintest",
-}
-
-PREFAB_SKINS_IDS = {}
-for prefab,skins in pairs(PREFAB_SKINS) do
-	PREFAB_SKINS_IDS[prefab] = {}
-	for k,v in pairs(skins) do
-		PREFAB_SKINS_IDS[prefab][v] = k
-	end
-end
-
-AddSkinnableCharacter("templatechar")
 
 -- Skin Names
 	STRINGS.SKIN_NAMES.templatechar_none = "Default"
@@ -112,25 +101,46 @@ AddSkinnableCharacter("templatechar")
 	STRINGS.SKIN_DESCRIPTIONS.templatechar_akb48hr = "Description"
 
 -- Character Info
-	STRINGS.CHARACTER_TITLES.templatechar = "The Multiplayer Template"
+	STRINGS.NAMES.TEMPLATECHAR = "Sample"
 	STRINGS.CHARACTER_NAMES.templatechar = "Sample"
-	STRINGS.CHARACTER_DESCRIPTIONS.templatechar = "*Perk 1\n*Perk 2\n*Perk 3"
 	STRINGS.CHARACTER_QUOTES.templatechar = "\"Quote\""
+	STRINGS.CHARACTER_TITLES.templatechar = "The Multiplayer Template"
+	STRINGS.CHARACTER_DESCRIPTIONS.templatechar = "*Perk 1\n*Perk 2\n*Perk 3"
 	STRINGS.CHARACTER_SURVIVABILITY.templatechar = "Slim"
+	STRINGS.CHARACTER_ABOUTME.templatechar = "About Sample..."
+	STRINGS.CHARACTER_BIOS.templatechar = 
+		{
+			{ title = "Age", desc = "20" },
+			{ title = "Favorite Food", desc = "Taffy" },
+			{ title = "Story Title", desc = "To be determined..." },
+		}
 
 -- Character's Speech File
 	STRINGS.CHARACTERS.TEMPLATECHAR = require "speech_templatechar"
 
--- Character's In-Game Name
-	STRINGS.NAMES.TEMPLATECHAR = "Sample"
+-- Event Strings
+	STRINGS.LAVAARENA_CHARACTER_DESCRIPTIONS.templatechar = "*Becomes stronger when health is low, increasing attack power and movement speed for 15 seconds\n\nExpertise:\nMelee"
+	STRINGS.QUAGMIRE_CHARACTER_DESCRIPTIONS.templatechar = "*Expert haggler\n\n\n\n*Expertise:\nShopping"
+
+-- Gorge Lobby Voice
+if GorgeEnv ~= nil then
+	GorgeEnv.AddLobbyVoice("templatechar", "wilson")
+	-- If your character has webber/wathgrithr voice, use this line
+	-- GorgeEnv.AddLobbyVoice("esctemplate", "wathgrithr", "dontstarve_DLC001/characters/")
+end
 
 -- The skins shown in the cycle view window on the character select screen.
 -- A good place to see what you can put in here is in skinutils.lua, in the function GetSkinModes
 local skin_modes = {
-
-	{ type = "ghost_skin", anim_bank = "ghost", idle_anim = "idle", scale = 0.75, offset = { 0, -25 } }
-
+	{
+		type = "ghost_skin",
+		anim_bank = "ghost",
+		idle_anim = "idle",
+		scale = 0.75,
+		offset = { 0, -25 }
+	}
 }
 
--- Add mod character to mod character list. Also specify a gender. Possible genders are MALE, FEMALE, ROBOT, NEUTRAL, and PLURAL.
+-- Add character to game and assign pronouns.
+-- Possible pronouns are: MALE(he/his), FEMALE(she/her) and ROBOT(they/their). Might be more.
 AddModCharacter("templatechar", "ROBOT", skin_modes)
